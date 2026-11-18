@@ -1,0 +1,41 @@
+[worldserver]
+
+########################################
+# mod-temucraft-auto-learn
+########################################
+#
+#    Temucraft.AutoLearn.Enable
+#        Description: Players can learn class spells without visiting a trainer (spellbook button, .autolearn,
+#                     "Teach me everything" at class trainers) and may have them learned automatically.
+#        Default:     1
+#
+#    Temucraft.AutoLearn.Default
+#        Description: Whether new spells are learned automatically for players who never chose.
+#        Default:     0 - (off: players turn it on themselves)
+#                     1 - (on)
+#
+#    Temucraft.AutoLearn.AllowChoice
+#        Description: Players may turn automatic learning on or off for themselves. 0 = Default applies to everyone.
+#        Default:     1
+#
+#    Temucraft.AutoLearn.Cost
+#        Description: Spells cost what the trainer asks (at a trainer with your reputation discount). What you can't
+#                     pay yet stays for later.
+#        Default:     0 - (free)
+#                     1 - (trainer price)
+#
+#    Temucraft.AutoLearn.MaxLevel
+#        Description: Spells a trainer teaches above this level are never learned this way.
+#        Default:     80
+#
+#    Temucraft.AutoLearn.AtLogin
+#        Description: With automatic learning on, catch up on login (spells added to trainers since, levels gained
+#                     while it was off).
+#        Default:     1
+
+Temucraft.AutoLearn.Enable = 1
+Temucraft.AutoLearn.Default = 0
+Temucraft.AutoLearn.AllowChoice = 1
+Temucraft.AutoLearn.Cost = 0
+Temucraft.AutoLearn.MaxLevel = 80
+Temucraft.AutoLearn.AtLogin = 1
