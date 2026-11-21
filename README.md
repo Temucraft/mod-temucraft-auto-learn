@@ -13,7 +13,7 @@ Learn new class spells without walking back to a trainer, if a player wants to.
 What can be learned comes from the class trainers' own lists (`trainer` / `trainer_spell`, Type 0), checked exactly
 like a trainer checks it: level, earlier ranks, required spells and skills, race and class, and other modules' trainer
 rules (the core's trainer hooks). So spells added, moved or removed at the trainers, by hand or by other modules
-(such as Totemic Recall at level 10 or Parachute from [mod-temucraft-class-tweaks](https://github.com/Temucraft/mod-temucraft-class-tweaks)), are learned here the same way.
+(such as Totemic Recall at level 10 or Parachute from [mod-temucraft-classes](https://github.com/Temucraft/mod-temucraft-classes)), are learned here the same way.
 Pet, mount and profession trainers aren't used, and profession first ranks are never picked.
 
 The spellbook button and checkbox are part of the Temucraft interface built by [mod-temucraft-client-version](https://github.com/Temucraft/mod-temucraft-client-version) (addon
