@@ -248,7 +248,7 @@ namespace
     {
         uint32 guid = player->GetGUID().GetCounter();
         choice[guid] = on;
-        CharacterDatabase.Execute("REPLACE INTO `mod_temucraft_auto_learn` (`guid`, `enabled`) VALUES ({}, {})", guid, on ? 1 : 0);
+        CharacterDatabase.Execute("REPLACE INTO `mod_temucraft_character_setting` (`guid`, `setting`, `value`) VALUES ({}, 'autolearn', {})", guid, on ? 1 : 0);
         ChatHandler(player->GetSession()).SendSysMessage(on
             ? Say(player, T_ON, "|cff33ff99New spells:|r new class spells will be learned as soon as you can learn them.")
             : Say(player, T_OFF, "|cff33ff99New spells:|r new class spells are learned at your trainer again."));
@@ -314,8 +314,8 @@ public:
     void OnPlayerLogin(Player* player) override
     {
         uint32 guid = player->GetGUID().GetCounter();
-        if (QueryResult r = CharacterDatabase.Query("SELECT `enabled` FROM `mod_temucraft_auto_learn` WHERE `guid` = {}", guid))
-            choice[guid] = r->Fetch()[0].Get<uint8>() != 0;
+        if (QueryResult r = CharacterDatabase.Query("SELECT `value` FROM `mod_temucraft_character_setting` WHERE `guid` = {} AND `setting` = 'autolearn'", guid))
+            choice[guid] = r->Fetch()[0].Get<int32>() != 0;
         if (settings.atLogin && IsOn(player))
             LearnAll(player, 1.0f, true);
     }
@@ -327,7 +327,7 @@ public:
 
     void OnPlayerDelete(ObjectGuid guid, uint32 /*accountId*/) override
     {
-        CharacterDatabase.Execute("DELETE FROM `mod_temucraft_auto_learn` WHERE `guid` = {}", guid.GetCounter());
+        CharacterDatabase.Execute("DELETE FROM `mod_temucraft_character_setting` WHERE `guid` = {} AND `setting` = 'autolearn'", guid.GetCounter());
     }
 
     void OnPlayerLevelChanged(Player* player, uint8 oldLevel) override

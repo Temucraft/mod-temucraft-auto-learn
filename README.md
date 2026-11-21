@@ -22,7 +22,7 @@ messages, prefix TAL); without it the commands and the trainer options work on t
 ## Install
 
 1. Put this folder in `modules/` of your AzerothCore source, re-run CMake and build.
-2. The SQL in `data/sql/` is applied by the worldserver on its next start: `mod_temucraft_auto_learn` (characters,
+2. The SQL in `data/sql/` is applied by the worldserver on its next start: `mod_temucraft_character_setting` (setting `autolearn`) (characters,
    each character's choice) and the module's texts in `module_string`.
 3. Copy `conf/mod-temucraft-auto-learn.conf.dist` to `configs/modules/` as `mod-temucraft-auto-learn.conf` to change
    the settings. `.reload config` applies them and reads the trainers' lists again.
