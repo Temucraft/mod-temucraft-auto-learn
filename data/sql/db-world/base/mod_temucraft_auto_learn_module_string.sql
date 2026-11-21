@@ -14,4 +14,4 @@ INSERT INTO `module_string` (`module`, `id`, `string`) VALUES
 ('mod-temucraft-auto-learn', 11, 'Learning without a trainer is turned off on this server.'),
 ('mod-temucraft-auto-learn', 12, '|cff33ff99New spells:|r {} can be learned now.'),
 ('mod-temucraft-auto-learn', 13, '  {} {} (level {}, {} silver)'),
-('mod-temucraft-auto-learn', 14, '.autolearn on | off | now | list');
+('mod-temucraft-auto-learn', 14, '.temucraft autolearn on | off | now | list');

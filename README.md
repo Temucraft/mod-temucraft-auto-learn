@@ -3,9 +3,9 @@
 Learn new class spells without walking back to a trainer, if a player wants to.
 
 - **Automatic learning** (off by default, each player chooses): new class spells are learned the moment you reach
-  their level, and on login. Turn it on or off with the checkbox in the spellbook, `.autolearn on|off`, or at any
+  their level, and on login. Turn it on or off with the checkbox in the spellbook, `.temucraft autolearn on|off`, or at any
   class trainer.
-- **Learn everything now**: the spellbook's **Train** button (its tooltip lists what's waiting), `.autolearn now`, or
+- **Learn everything now**: the spellbook's **Train** button (its tooltip lists what's waiting), `.temucraft autolearn now`, or
   "Teach me everything I can learn" at a class trainer.
 - **Free or paid** (`Cost`): free, or the trainer's price for every spell (with your reputation discount at a
   trainer). What you can't pay yet stays for later and the button says how much it costs.

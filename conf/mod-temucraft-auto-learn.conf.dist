@@ -5,7 +5,7 @@
 ########################################
 #
 #    Temucraft.AutoLearn.Enable
-#        Description: Players can learn class spells without visiting a trainer (spellbook button, .autolearn,
+#        Description: Players can learn class spells without visiting a trainer (spellbook button, .temucraft autolearn,
 #                     "Teach me everything" at class trainers) and may have them learned automatically.
 #        Default:     1
 #

@@ -9,9 +9,9 @@
 // class trainers themselves (trainer / trainer_spell, Type 0), so every change made there (other levels, new spells,
 // other modules' trainer rules) applies here too. Optionally at the trainers' price.
 //
-// - Per player on or off (.autolearn on|off, the spellbook's checkbox, or at a class trainer); off by default.
+// - Per player on or off (.temucraft autolearn on|off, the spellbook's checkbox, or at a class trainer); off by default.
 // - When on: new spells are learned on level up and at login.
-// - Anytime: ".autolearn now", the spellbook's "Train" button or a class trainer's "Teach me everything" learn all
+// - Anytime: ".temucraft autolearn now", the spellbook's "Train" button or a class trainer's "Teach me everything" learn all
 //   that is missing at once.
 // - Spellbook button and checkbox: addon messages, prefix TAL.
 
@@ -412,13 +412,13 @@ public:
     {
         static ChatCommandTable sub =
         {
-            { "on",   HandleOn,   SEC_PLAYER, Console::No },
-            { "off",  HandleOff,  SEC_PLAYER, Console::No },
-            { "now",  HandleNow,  SEC_PLAYER, Console::No },
-            { "list", HandleList, SEC_PLAYER, Console::No },
-            { "",     HandleStatus, SEC_PLAYER, Console::No },
+            { "on",   HandleOn,   101950, Console::No },
+            { "off",  HandleOff,  101951, Console::No },
+            { "now",  HandleNow,  101952, Console::No },
+            { "list", HandleList, 101953, Console::No },
+            { "",     HandleStatus, 101954, Console::No },
         };
-        static ChatCommandTable root = { { "autolearn", sub } };
+        static ChatCommandTable root = { { "temucraft autolearn", sub } };
         return root;
     }
 
@@ -442,7 +442,7 @@ public:
             return true;
         handler->PSendSysMessage(Say(player, T_STATUS, "|cff33ff99New spells:|r automatic learning is {}; {} spell(s) can be learned now."),
             IsOn(player) ? "on" : "off", Missing(player).size());
-        handler->SendSysMessage(Say(player, T_HELP, ".autolearn on | off | now | list"));
+        handler->SendSysMessage(Say(player, T_HELP, ".temucraft autolearn on | off | now | list"));
         return true;
     }
 
