@@ -42,6 +42,12 @@ namespace
     constexpr char const* PREFIX = "TAL";
     constexpr uint32 SENDER_AUTO_LEARN = 0x7A1E;
     enum Action : uint32 { ACTION_LEARN_ALL = 1, ACTION_TURN_ON = 2, ACTION_TURN_OFF = 3 };
+    // The core runs the trainer's SmartAI on every gossip pick before any script, keyed by (menu id, item index), and
+    // an auto index fills the gaps hidden DB options leave (rogue/warrior intro trainers: "<Take the letter>" casts
+    // Conjure Elegant Letter). So our two items take fixed indexes near the top that no DB option uses, in the order
+    // they show (the hearthstone and taxi-form options of mod-temucraft-travel have GOSSIP_MAX_MENU_ITEMS - 1 and - 2).
+    constexpr uint32 ITEM_LEARN_ALL = GOSSIP_MAX_MENU_ITEMS - 4;
+    constexpr uint32 ITEM_TOGGLE = GOSSIP_MAX_MENU_ITEMS - 3;
 
     enum Text : uint32
     {
@@ -376,14 +382,15 @@ public:
             uint32 total = 0;
             for (ClassSpell const* cs : missing)
                 total += PriceOf(*cs, discount);
-            AddGossipItemFor(player, GOSSIP_ICON_TRAINER, Acore::StringFormat(Say(player, T_GOSSIP_LEARN,
-                "Teach me everything I can learn ({} spells)."), missing.size()), SENDER_AUTO_LEARN, ACTION_LEARN_ALL, "", total, false);
+            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(ITEM_LEARN_ALL, GOSSIP_ICON_TRAINER, Acore::StringFormat(Say(player,
+                T_GOSSIP_LEARN, "Teach me everything I can learn ({} spells)."), missing.size()), SENDER_AUTO_LEARN, ACTION_LEARN_ALL, "", total, false);
         }
         if (settings.allowChoice)
-            AddGossipItemFor(player, GOSSIP_ICON_CHAT, IsOn(player)
+            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(ITEM_TOGGLE, GOSSIP_ICON_CHAT, IsOn(player)
                 ? Say(player, T_GOSSIP_OFF, "I will come to you for new spells again.")
                 : Say(player, T_GOSSIP_ON, "Teach me new spells as soon as I'm ready, wherever I am."),
-                SENDER_AUTO_LEARN, IsOn(player) ? ACTION_TURN_OFF : ACTION_TURN_ON);
+                SENDER_AUTO_LEARN, IsOn(player) ? ACTION_TURN_OFF : ACTION_TURN_ON, "", 0);
+
         player->SendPreparedGossip(creature);
         return true;
     }
